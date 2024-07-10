@@ -1,0 +1,4 @@
+CREATE TYPE event_state AS ENUM ('PENDING', 'ACTIVE', 'CANCELLED', 'COMPLETED');
+
+CREATE TYPE user_type AS ENUM ('ADMIN', 'USER');
+
