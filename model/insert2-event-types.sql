@@ -1,0 +1,15 @@
+insert into Event_Types (event_type_name) values ('Horror');
+insert into Event_Types (event_type_name) values ('Western');
+insert into Event_Types (event_type_name) values ('Adventure');
+insert into Event_Types (event_type_name) values ('Thriller');
+insert into Event_Types (event_type_name) values ('Adventure');
+insert into Event_Types (event_type_name) values ('Action');
+insert into Event_Types (event_type_name) values ('IMAX');
+insert into Event_Types (event_type_name) values ('Fantasy');
+insert into Event_Types (event_type_name) values ('Drama');
+insert into Event_Types (event_type_name) values ('Animation');
+insert into Event_Types (event_type_name) values ('Musical');
+insert into Event_Types (event_type_name) values ('Sci-Fi');
+insert into Event_Types (event_type_name) values ('Romance');
+insert into Event_Types (event_type_name) values ('Comedy');
+insert into Event_Types (event_type_name) values ('Crime');
