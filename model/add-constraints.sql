@@ -12,3 +12,6 @@ ADD CONSTRAINT uq_event_guests UNIQUE(user_id, event_id);
 
 ALTER TABLE Event_Subscriptions
 ADD CONSTRAINT uq_event_subscriptions UNIQUE(user_id, event_id);
+
+ALTER TABLE Events
+ADD CONSTRAINT events_date CHECK(event_end_date>=event_start_date);

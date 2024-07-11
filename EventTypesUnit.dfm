@@ -1,33 +1,19 @@
-object MainForm: TMainForm
+object EventTypesForm: TEventTypesForm
   Left = 0
   Top = 0
-  Caption = 'Neon Hotel'
+  Caption = 'Neon Hotel - Event Types'
   ClientHeight = 461
-  ClientWidth = 700
+  ClientWidth = 684
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poDesktopCenter
+  OnClose = FormClose
   TextHeight = 15
-  object PasswordLabel: TLabel
-    Left = 250
-    Top = 260
-    Width = 50
-    Height = 15
-    Caption = 'Password'
-  end
-  object UsernameLabel: TLabel
-    Left = 250
-    Top = 200
-    Width = 53
-    Height = 15
-    Caption = 'Username'
-  end
   object MainBanner: TImage
-    Left = -50
+    Left = -58
     Top = 40
     Width = 800
     Height = 100
@@ -962,53 +948,58 @@ object MainForm: TMainForm
     Proportional = True
     Transparent = True
   end
-  object LoginButton: TButton
-    Left = 300
-    Top = 330
-    Width = 100
-    Height = 25
-    Cursor = crHandPoint
-    Caption = 'Login'
+  object EventsTypesLabel: TLabel
+    Left = 260
+    Top = 110
+    Width = 181
+    Height = 48
+    Caption = 'event types'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 1052429
+    Font.Height = 48
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object EventTypesDBGrid: TDBGrid
+    Left = 24
+    Top = 205
+    Width = 620
+    Height = 205
+    DataSource = EventTypesDataSource
     TabOrder = 0
-    OnClick = LoginButtonClick
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'event_name'
+        ImeName = 'US'
+        Title.Caption = 'Event Name'
+        Width = 290
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'event_type_name'
+        Title.Caption = 'Event Type Name'
+        Width = 290
+        Visible = True
+      end>
   end
-  object PasswordEdit: TEdit
+  object SpecialGuestsDBNavigator: TDBNavigator
     Left = 250
-    Top = 280
+    Top = 416
     Width = 200
-    Height = 23
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGrayText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
+    Height = 18
+    DataSource = EventTypesDataSource
     TabOrder = 1
-    Text = 'Password'
-    OnClick = PasswordEditClick
   end
-  object UsernameEdit: TEdit
-    AlignWithMargins = True
-    Left = 250
-    Top = 220
-    Width = 200
-    Height = 23
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGrayText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-    Text = 'Username'
-    OnClick = UsernameEditClick
-  end
-  object LoginDataSource: TDataSource
-    DataSet = LoginQuery
-    Left = 592
-    Top = 432
-  end
-  object MainConnection: TFDConnection
+  object EventTypesConnection: TFDConnection
+    ConnectionName = 'EventTypesConnection'
     Params.Strings = (
       'Database='
       'User_Name='
@@ -1017,27 +1008,24 @@ object MainForm: TMainForm
       'DataSource=PostgreSQL35W'
       'DriverID=ODBC')
     Connected = True
-    Left = 672
-    Top = 432
+    Left = 652
+    Top = 429
   end
-  object LoginQuery: TFDQuery
-    Connection = MainConnection
+  object EventTypesQuery: TFDQuery
+    Active = True
+    Connection = EventTypesConnection
     SQL.Strings = (
       
-        'SELECT user_type FROM users WHERE user_name=? AND user_password=' +
-        '?;')
-    Left = 632
-    Top = 432
-    ParamData = <
-      item
-        ArrayType = atTable
-        DataType = ftString
-        ParamType = ptInput
-      end
-      item
-        ArrayType = atTable
-        DataType = ftString
-        ParamType = ptInput
-      end>
+        'SELECT e.event_name AS event_name, et.event_type_name AS event_t' +
+        'ype_name FROM events AS e INNER JOIN event_types_mapping AS etm ' +
+        'ON etm.event_type_id=e.event_id INNER JOIN event_types AS et ON ' +
+        'et.event_type_id=etm.event_type_id;')
+    Left = 608
+    Top = 429
+  end
+  object EventTypesDataSource: TDataSource
+    DataSet = EventTypesQuery
+    Left = 564
+    Top = 429
   end
 end

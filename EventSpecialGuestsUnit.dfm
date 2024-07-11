@@ -1,33 +1,19 @@
-object MainForm: TMainForm
+object SpecialGuestsForm: TSpecialGuestsForm
   Left = 0
   Top = 0
-  Caption = 'Neon Hotel'
+  Caption = 'Neon Hotel - Special Guests'
   ClientHeight = 461
-  ClientWidth = 700
+  ClientWidth = 684
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
-  Position = poDesktopCenter
+  OnClose = FormClose
   TextHeight = 15
-  object PasswordLabel: TLabel
-    Left = 250
-    Top = 260
-    Width = 50
-    Height = 15
-    Caption = 'Password'
-  end
-  object UsernameLabel: TLabel
-    Left = 250
-    Top = 200
-    Width = 53
-    Height = 15
-    Caption = 'Username'
-  end
   object MainBanner: TImage
-    Left = -50
+    Left = -58
     Top = 40
     Width = 800
     Height = 100
@@ -962,53 +948,64 @@ object MainForm: TMainForm
     Proportional = True
     Transparent = True
   end
-  object LoginButton: TButton
-    Left = 300
-    Top = 330
-    Width = 100
-    Height = 25
-    Cursor = crHandPoint
-    Caption = 'Login'
+  object SpecialGuestsLabel: TLabel
+    Left = 260
+    Top = 110
+    Width = 220
+    Height = 48
+    Caption = 'special guests'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = 1052429
+    Font.Height = 48
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+  end
+  object EventSpecialGuestsDBGrid: TDBGrid
+    Left = 24
+    Top = 205
+    Width = 620
+    Height = 205
+    DataSource = EventSpecialGuestsDataSource
     TabOrder = 0
-    OnClick = LoginButtonClick
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'event_name'
+        ImeName = 'US'
+        Title.Caption = 'Event Name'
+        Width = 180
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'user_name'
+        Title.Caption = 'Username'
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'guest_type_name'
+        Title.Caption = 'Guest Type Name'
+        Width = 200
+        Visible = True
+      end>
   end
-  object PasswordEdit: TEdit
+  object EventSpecialGuestsDBNavigator: TDBNavigator
     Left = 250
-    Top = 280
+    Top = 416
     Width = 200
-    Height = 23
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGrayText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
+    Height = 18
+    DataSource = EventSpecialGuestsDataSource
     TabOrder = 1
-    Text = 'Password'
-    OnClick = PasswordEditClick
   end
-  object UsernameEdit: TEdit
-    AlignWithMargins = True
-    Left = 250
-    Top = 220
-    Width = 200
-    Height = 23
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clGrayText
-    Font.Height = -12
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-    Text = 'Username'
-    OnClick = UsernameEditClick
-  end
-  object LoginDataSource: TDataSource
-    DataSet = LoginQuery
-    Left = 592
-    Top = 432
-  end
-  object MainConnection: TFDConnection
+  object EventSpecialGuestsConnection: TFDConnection
     Params.Strings = (
       'Database='
       'User_Name='
@@ -1017,27 +1014,27 @@ object MainForm: TMainForm
       'DataSource=PostgreSQL35W'
       'DriverID=ODBC')
     Connected = True
-    Left = 672
-    Top = 432
+    Left = 652
+    Top = 429
   end
-  object LoginQuery: TFDQuery
-    Connection = MainConnection
+  object EventSpecialGuestsQuery: TFDQuery
+    Active = True
+    Connection = EventSpecialGuestsConnection
     SQL.Strings = (
       
-        'SELECT user_type FROM users WHERE user_name=? AND user_password=' +
-        '?;')
-    Left = 632
-    Top = 432
-    ParamData = <
-      item
-        ArrayType = atTable
-        DataType = ftString
-        ParamType = ptInput
-      end
-      item
-        ArrayType = atTable
-        DataType = ftString
-        ParamType = ptInput
-      end>
+        'SELECT e.event_name AS event_name, u.user_name AS user_name, gt.' +
+        'guest_type_name AS guest_type_name FROM events AS e INNER JOIN e' +
+        'vent_special_guests AS esg ON esg.event_id=e.event_id INNER JOIN' +
+        ' Users AS u ON u.user_id=esg.user_id INNER JOIN Event_Guest_Type' +
+        's AS egt ON esg.event_guest_type_id = egt.guest_type_id INNER JO' +
+        'IN Guest_Types AS gt ON gt.guest_type_id = egt.guest_type_id GRO' +
+        'UP BY e.event_name, u.user_name, gt.guest_type_name;')
+    Left = 608
+    Top = 429
+  end
+  object EventSpecialGuestsDataSource: TDataSource
+    DataSet = EventSpecialGuestsQuery
+    Left = 564
+    Top = 429
   end
 end

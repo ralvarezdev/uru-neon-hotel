@@ -8,34 +8,32 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TMain *Main;
+TMainForm *MainForm;
 //---------------------------------------------------------------------------
-__fastcall TMain::TMain(TComponent* Owner)
+__fastcall TMainForm::TMainForm(TComponent* Owner)
 	: TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TMain::LoginButtonClick(TObject *Sender)
+void __fastcall TMainForm::LoginButtonClick(TObject *Sender)
 {
 	// Setting SQL Query parameters
 	LoginQuery->Params->Items[0]->AsString =  PasswordEdit->Text;
 	LoginQuery->Params->Items[1]->AsString =  UsernameEdit->Text;
-	LoginQuery->Open()                 ;
+	LoginQuery->Open();
 
 	// Iterating record result
 	LoginQuery->First();
-	if(LoginQuery->RecordCount>0&&LoginQuery->FieldByName("user_type")->AsString=="ADMIN")
-	{
-		TForm *EventsForm = new TForm( this );
-		Hide();
-
+	if(LoginQuery->RecordCount>0&&LoginQuery->FieldByName("user_type")->AsString=="ADMIN")  {
+		MainForm->Hide();
 		EventsForm->ShowModal();
 	}
-    LoginQuery->Close();
+
+	LoginQuery->Close();
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMain::UsernameEditClick(TObject *Sender)
+void __fastcall TMainForm::UsernameEditClick(TObject *Sender)
 {
 	if(UsernameEdit->Text=="Username"){
 		UsernameEdit->Text="";
@@ -46,7 +44,7 @@ void __fastcall TMain::UsernameEditClick(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TMain::PasswordEditClick(TObject *Sender)
+void __fastcall TMainForm::PasswordEditClick(TObject *Sender)
 {
 	if(PasswordEdit->Text=="Password")        {
 		PasswordEdit->Text="";
@@ -56,4 +54,5 @@ void __fastcall TMain::PasswordEditClick(TObject *Sender)
 	PasswordEdit->Font->Color= clBtnText;
 }
 //---------------------------------------------------------------------------
+
 

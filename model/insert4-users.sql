@@ -998,3 +998,5 @@ insert into Users (user_name, user_password, user_email, user_type) values ('nst
 insert into Users (user_name, user_password, user_email, user_type) values ('tguiurp', 'uH4~9YgrzO3V}D{w@h%47Tk9Yu${=\VLmsDqeL%E>0gsV8yOPf4Ka5', 'vwhitefordrp@exblog.jp', 'USER');
 insert into Users (user_name, user_password, user_email, user_type) values ('rconnockrq', 'qV5`=,bXe{Xbuw\8HHIfRF+1dr~gNXm7032uwchJ<z', 'jargerrq@lulu.com', 'USER');
 insert into Users (user_name, user_password, user_email, user_type) values ('aenrichrr', 'mQ7)s@g~"M4+jTuFwNVw~t_"efa_30_4!%g7hYgV,*5t~', 'pnormanvillerr@intel.com', 'ADMIN');
+INSERT INTO Users (user_name, user_password, user_email, user_type) VALUES ('admin','admin','admin@email.com','ADMIN');
+INSERT INTO Users (user_name, user_password, user_email, user_type) VALUES ('user','user','user@email.com','USER');

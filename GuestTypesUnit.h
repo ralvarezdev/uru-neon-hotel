@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef MainUnitH
-#define MainUnitH
+#ifndef GuestTypesUnitH
+#define GuestTypesUnitH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -10,11 +10,11 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Data.DB.hpp>
+#include <Vcl.DBGrids.hpp>
+#include <Vcl.Grids.hpp>
+#include <Vcl.Buttons.hpp>
+#include <Vcl.DBCtrls.hpp>
 #include <FireDAC.Comp.Client.hpp>
-#include <FireDAC.Comp.DataSet.hpp>
-#include <FireDAC.DApt.hpp>
-#include <FireDAC.DApt.Intf.hpp>
-#include <FireDAC.DatS.hpp>
 #include <FireDAC.Phys.hpp>
 #include <FireDAC.Phys.Intf.hpp>
 #include <FireDAC.Phys.ODBC.hpp>
@@ -24,37 +24,31 @@
 #include <FireDAC.Stan.Error.hpp>
 #include <FireDAC.Stan.Intf.hpp>
 #include <FireDAC.Stan.Option.hpp>
-#include <FireDAC.Stan.Param.hpp>
 #include <FireDAC.Stan.Pool.hpp>
 #include <FireDAC.UI.Intf.hpp>
 #include <FireDAC.VCLUI.Wait.hpp>
-#include <Vcl.DBGrids.hpp>
-#include <Vcl.Grids.hpp>
-#include <Vcl.Buttons.hpp>
-#include <Vcl.DBCtrls.hpp>
+#include <FireDAC.Comp.DataSet.hpp>
+#include <FireDAC.DApt.hpp>
+#include <FireDAC.DApt.Intf.hpp>
+#include <FireDAC.DatS.hpp>
+#include <FireDAC.Stan.Param.hpp>
 //---------------------------------------------------------------------------
-class TMainForm : public TForm
+class TGuestTypesForm : public TForm
 {
 __published:	// IDE-managed Components
-	TButton *LoginButton;
-	TLabel *PasswordLabel;
-	TLabel *UsernameLabel;
-	TEdit *PasswordEdit;
-	TEdit *UsernameEdit;
 	TImage *MainBanner;
-	TDataSource *LoginDataSource;
-	TFDConnection *MainConnection;
-	TFDQuery *LoginQuery;
-	void __fastcall LoginButtonClick(TObject *Sender);
-	void __fastcall UsernameEditClick(TObject *Sender);
-	void __fastcall PasswordEditClick(TObject *Sender);
-
-
+	TLabel *GuestTypesLabel;
+	TDBGrid *GuestTypesDBGrid;
+	TDBNavigator *SpecialGuestsDBNavigator;
+	TFDConnection *EventGuestTypesConnection;
+	TFDQuery *EventGuestTypesQuery;
+	TDataSource *EventGuestTypesDataSource;
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 private:	// User declarations
 public:		// User declarations
-	__fastcall TMainForm(TComponent* Owner);
+	__fastcall TGuestTypesForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TMainForm *MainForm;
+extern PACKAGE TGuestTypesForm *GuestTypesForm;
 //---------------------------------------------------------------------------
 #endif

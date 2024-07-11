@@ -31,21 +31,31 @@
 #include <FireDAC.DApt.Intf.hpp>
 #include <FireDAC.DatS.hpp>
 #include <FireDAC.Stan.Param.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
 //---------------------------------------------------------------------------
-class TForm1 : public TForm
+class TEventsForm : public TForm
 {
 __published:	// IDE-managed Components
-	TButton *Button1;
-	TDBGrid *DBGrid1;
-	TDBNavigator *DBNavigator1;
-	TFDConnection *FDConnection1;
-	TDataSource *DataSource2;
-	TFDQuery *FDQuery1;
+	TDBGrid *EventsDBGrid;
+	TDBNavigator *EventsDBNavigator;
+	TFDConnection *SpecialGuestsConnection;
+	TDataSource *EventsDataSource;
+	TFDQuery *EventsQuery;
+	TImage *MainBanner;
+	TLabel *EventsLabel;
+	TButton *SpecialGuestsButton;
+	TButton *GuestTypesButton;
+	TButton *EventTypesButton;
+	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
+	void __fastcall SpecialGuestsButtonClick(TObject *Sender);
+	void __fastcall GuestTypesButtonClick(TObject *Sender);
+	void __fastcall EventTypesButtonClick(TObject *Sender);
+
 private:	// User declarations
 public:		// User declarations
-	__fastcall TForm1(TComponent* Owner);
+	__fastcall TEventsForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TForm1 *Form1;
+extern PACKAGE TEventsForm *EventsForm;
 //---------------------------------------------------------------------------
 #endif

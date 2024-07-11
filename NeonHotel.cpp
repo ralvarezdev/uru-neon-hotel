@@ -4,8 +4,11 @@
 #pragma hdrstop
 #include <tchar.h>
 //---------------------------------------------------------------------------
-USEFORM("MainUnit.cpp", Main);
-USEFORM("EventsUnit.cpp", Form1);
+USEFORM("MainUnit.cpp", MainForm);
+USEFORM("EventsUnit.cpp", EventsForm);
+USEFORM("EventSpecialGuestsUnit.cpp", SpecialGuestsForm);
+USEFORM("GuestTypesUnit.cpp", GuestTypesForm);
+USEFORM("EventTypesUnit.cpp", EventTypesForm);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -13,8 +16,11 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 	{
 		Application->Initialize();
 		Application->MainFormOnTaskBar = true;
-		Application->CreateForm(__classid(TMain), &Main);
-		Application->CreateForm(__classid(TForm1), &Form1);
+		Application->CreateForm(__classid(TMainForm), &MainForm);
+		Application->CreateForm(__classid(TEventsForm), &EventsForm);
+		Application->CreateForm(__classid(TSpecialGuestsForm), &SpecialGuestsForm);
+		Application->CreateForm(__classid(TGuestTypesForm), &GuestTypesForm);
+		Application->CreateForm(__classid(TEventTypesForm), &EventTypesForm);
 		Application->Run();
 	}
 	catch (Exception &exception)
