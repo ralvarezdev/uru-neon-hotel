@@ -1,7 +1,8 @@
-object SpecialGuestsForm: TSpecialGuestsForm
+object EventGuestAttendeesForm: TEventGuestAttendeesForm
   Left = 0
   Top = 0
-  Caption = 'Neon Hotel - Special Guests'
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'Neon Hotel - Attendees'
   ClientHeight = 461
   ClientWidth = 684
   Color = clBtnFace
@@ -13,9 +14,9 @@ object SpecialGuestsForm: TSpecialGuestsForm
   OnClose = FormClose
   TextHeight = 15
   object MainBanner: TImage
-    Left = -58
+    Left = -8
     Top = 40
-    Width = 800
+    Width = 700
     Height = 100
     Center = True
     Picture.Data = {
@@ -948,12 +949,12 @@ object SpecialGuestsForm: TSpecialGuestsForm
     Proportional = True
     Transparent = True
   end
-  object SpecialGuestsLabel: TLabel
+  object AttendeesLabel: TLabel
     Left = 260
     Top = 110
-    Width = 220
+    Width = 155
     Height = 48
-    Caption = 'special guests'
+    Caption = 'attendees'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = 1052429
     Font.Height = 48
@@ -961,12 +962,12 @@ object SpecialGuestsForm: TSpecialGuestsForm
     Font.Style = []
     ParentFont = False
   end
-  object EventSpecialGuestsDBGrid: TDBGrid
+  object EventGuestAttendeesDBGrid: TDBGrid
     Left = 24
     Top = 205
     Width = 620
     Height = 205
-    DataSource = EventSpecialGuestsDataSource
+    DataSource = EventGuestAttendeesDataSource
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
@@ -979,33 +980,47 @@ object SpecialGuestsForm: TSpecialGuestsForm
         FieldName = 'event_name'
         ImeName = 'US'
         Title.Caption = 'Event Name'
-        Width = 180
+        Width = 150
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'user_name'
         Title.Caption = 'Username'
-        Width = 200
+        Width = 110
         Visible = True
       end
       item
         Expanded = False
         FieldName = 'guest_type_name'
         Title.Caption = 'Guest Type Name'
-        Width = 200
+        Width = 120
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'event_guest_is_special'
+        Title.Caption = 'Is Special'
+        Width = 120
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'event_guest_does_attend'
+        Title.Caption = 'Attended'
+        Width = 80
         Visible = True
       end>
   end
-  object EventSpecialGuestsDBNavigator: TDBNavigator
+  object EventGuestAttendeesDBNavigator: TDBNavigator
     Left = 250
     Top = 416
     Width = 200
     Height = 18
-    DataSource = EventSpecialGuestsDataSource
+    DataSource = EventGuestAttendeesDataSource
     TabOrder = 1
   end
-  object EventSpecialGuestsConnection: TFDConnection
+  object EventGuestAttendeesConnection: TFDConnection
     Params.Strings = (
       'Database='
       'User_Name='
@@ -1017,24 +1032,28 @@ object SpecialGuestsForm: TSpecialGuestsForm
     Left = 652
     Top = 429
   end
-  object EventSpecialGuestsQuery: TFDQuery
+  object EventGuestAttendeesQuery: TFDQuery
     Active = True
-    Connection = EventSpecialGuestsConnection
+    Connection = EventGuestAttendeesConnection
     SQL.Strings = (
       
         'SELECT e.event_name AS event_name, u.user_name AS user_name, gt.' +
-        'guest_type_name AS guest_type_name FROM events AS e INNER JOIN e' +
-        'vent_special_guests AS esg ON esg.event_id=e.event_id INNER JOIN' +
-        ' Users AS u ON u.user_id=esg.user_id INNER JOIN Event_Guest_Type' +
-        's AS egt ON esg.event_guest_type_id = egt.guest_type_id INNER JO' +
-        'IN Guest_Types AS gt ON gt.guest_type_id = egt.guest_type_id GRO' +
-        'UP BY e.event_name, u.user_name, gt.guest_type_name;')
-    Left = 608
+        'guest_type_name AS guest_type_name, eg.event_guest_is_special AS' +
+        ' event_guest_is_special, ega.event_guest_does_attend AS event_gu' +
+        'est_does_attend FROM events AS e INNER JOIN event_guests AS eg O' +
+        'N eg.event_id=e.event_id INNER JOIN Users AS u ON u.user_id=eg.u' +
+        'ser_id INNER JOIN Event_Guest_Types AS egt ON eg.event_guest_typ' +
+        'e_id = egt.guest_type_id INNER JOIN Guest_Types AS gt ON gt.gues' +
+        't_type_id = egt.guest_type_id INNER JOIN Event_Guest_Attendees A' +
+        'S ega ON ega.event_guest_id=eg.event_guest_id GROUP BY e.event_n' +
+        'ame, u.user_name, gt.guest_type_name, eg.event_guest_is_special,' +
+        ' ega.event_guest_does_attend;')
+    Left = 616
     Top = 429
   end
-  object EventSpecialGuestsDataSource: TDataSource
-    DataSet = EventSpecialGuestsQuery
-    Left = 564
+  object EventGuestAttendeesDataSource: TDataSource
+    DataSet = EventGuestAttendeesQuery
+    Left = 580
     Top = 429
   end
 end

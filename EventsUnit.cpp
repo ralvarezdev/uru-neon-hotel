@@ -7,7 +7,8 @@
 #include "EventsUnit.h"
 #include "GuestTypesUnit.h"
 #include "EventTypesUnit.h"
-#include "EventSpecialGuestsUnit.h"
+#include "EventGuestsUnit.h"
+#include "EventGuestAttendeesUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -25,24 +26,31 @@ void __fastcall TEventsForm::FormClose(TObject *Sender, TCloseAction &Action)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TEventsForm::SpecialGuestsButtonClick(TObject *Sender)
+void __fastcall TEventsForm::GuestsButtonClick(TObject *Sender)
 {
 	EventsForm->Hide();
-	SpecialGuestsForm->ShowModal();
+	EventGuestsForm->ShowModal();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TEventsForm::GuestTypesButtonClick(TObject *Sender)
 {
-	 EventsForm->Hide();
+EventsForm->Hide();
 	GuestTypesForm->ShowModal();
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TEventsForm::EventTypesButtonClick(TObject *Sender)
 {
-		EventsForm->Hide();
+	EventsForm->Hide();
 	EventTypesForm->ShowModal();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TEventsForm::EventGuestAttendeesButtonClick(TObject *Sender)
+{
+	EventsForm->Hide();
+	EventGuestAttendeesForm->ShowModal();
 }
 //---------------------------------------------------------------------------
 

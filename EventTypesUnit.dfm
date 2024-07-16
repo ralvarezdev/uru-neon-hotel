@@ -1,6 +1,7 @@
 object EventTypesForm: TEventTypesForm
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Neon Hotel - Event Types'
   ClientHeight = 461
   ClientWidth = 684
@@ -1020,12 +1021,12 @@ object EventTypesForm: TEventTypesForm
         'ype_name FROM events AS e INNER JOIN event_types_mapping AS etm ' +
         'ON etm.event_type_id=e.event_id INNER JOIN event_types AS et ON ' +
         'et.event_type_id=etm.event_type_id;')
-    Left = 608
+    Left = 616
     Top = 429
   end
   object EventTypesDataSource: TDataSource
     DataSet = EventTypesQuery
-    Left = 564
+    Left = 580
     Top = 429
   end
 end

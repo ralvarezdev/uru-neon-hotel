@@ -27,14 +27,6 @@ CREATE TABLE IF NOT EXISTS Users (
     user_type user_type NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS Event_Attendees (
-    event_attendee_id SERIAL PRIMARY KEY,
-    event_id INT NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (event_id) REFERENCES Events(event_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS Guest_Types (
     guest_type_id SERIAL PRIMARY KEY,
     guest_type_name VARCHAR(255) NOT NULL UNIQUE
@@ -48,31 +40,19 @@ CREATE TABLE IF NOT EXISTS Event_Guest_Types(
     FOREIGN KEY (guest_type_id) REFERENCES Guest_Types(guest_type_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Event_Special_Guests (
-    event_special_guest_id SERIAL PRIMARY KEY,
-    event_id INT NOT NULL,
-    user_id INT NOT NULL,
-    event_guest_type_id INT NOT NULL,
-    FOREIGN KEY (event_id) REFERENCES Events(event_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (event_guest_type_id) REFERENCES event_guest_types(event_guest_type_id) ON DELETE CASCADE ON UPDATE CASCADE
-);
-
 CREATE TABLE IF NOT EXISTS Event_Guests (
     event_guest_id SERIAL PRIMARY KEY,
     event_id INT NOT NULL,
     user_id INT NOT NULL,
     event_guest_type_id INT NOT NULL,
+    event_guest_is_special BOOLEAN NOT NULL,
     FOREIGN KEY (event_id) REFERENCES Events(event_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (event_guest_type_id) REFERENCES event_guest_types(event_guest_type_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS Event_Subscriptions (
-    event_subscription_id SERIAL PRIMARY KEY,
-    event_id INT NOT NULL,
-    user_id INT NOT NULL,
-    FOREIGN KEY (event_id) REFERENCES Events(event_id) ON DELETE CASCADE ON UPDATE CASCADE,
-    FOREIGN KEY (user_id) REFERENCES Users(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE IF NOT EXISTS Event_Guest_Attendees (
+    event_guest_id SERIAL PRIMARY KEY,
+    event_guest_does_attend BOOLEAN NOT NULL,
+    FOREIGN KEY (event_guest_id) REFERENCES Event_Guests(event_guest_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
-

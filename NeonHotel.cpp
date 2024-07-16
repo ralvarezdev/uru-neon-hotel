@@ -5,10 +5,11 @@
 #include <tchar.h>
 //---------------------------------------------------------------------------
 USEFORM("MainUnit.cpp", MainForm);
-USEFORM("EventsUnit.cpp", EventsForm);
-USEFORM("EventSpecialGuestsUnit.cpp", SpecialGuestsForm);
 USEFORM("GuestTypesUnit.cpp", GuestTypesForm);
+USEFORM("EventGuestsUnit.cpp", EventGuestsForm);
+USEFORM("EventsUnit.cpp", EventsForm);
 USEFORM("EventTypesUnit.cpp", EventTypesForm);
+USEFORM("EventGuestAttendeesUnit.cpp", EventGuestAttendeesForm);
 //---------------------------------------------------------------------------
 int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 {
@@ -18,9 +19,10 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 		Application->MainFormOnTaskBar = true;
 		Application->CreateForm(__classid(TMainForm), &MainForm);
 		Application->CreateForm(__classid(TEventsForm), &EventsForm);
-		Application->CreateForm(__classid(TSpecialGuestsForm), &SpecialGuestsForm);
+		Application->CreateForm(__classid(TEventGuestsForm), &EventGuestsForm);
 		Application->CreateForm(__classid(TGuestTypesForm), &GuestTypesForm);
 		Application->CreateForm(__classid(TEventTypesForm), &EventTypesForm);
+		Application->CreateForm(__classid(TEventGuestAttendeesForm), &EventGuestAttendeesForm);
 		Application->Run();
 	}
 	catch (Exception &exception)

@@ -179,10 +179,16 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
-        <CppCompile Include="EventSpecialGuestsUnit.cpp">
-            <Form>SpecialGuestsForm</Form>
+        <CppCompile Include="EventGuestAttendeesUnit.cpp">
+            <Form>EventGuestAttendeesForm</Form>
             <FormType>dfm</FormType>
-            <DependentOn>EventSpecialGuestsUnit.h</DependentOn>
+            <DependentOn>EventGuestAttendeesUnit.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="EventGuestsUnit.cpp">
+            <Form>EventGuestsForm</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>EventGuestsUnit.h</DependentOn>
             <BuildOrder>4</BuildOrder>
         </CppCompile>
         <CppCompile Include="EventsUnit.cpp">
@@ -216,10 +222,11 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <FormResources Include="MainUnit.dfm"/>
-        <FormResources Include="EventsUnit.dfm"/>
-        <FormResources Include="EventSpecialGuestsUnit.dfm"/>
         <FormResources Include="GuestTypesUnit.dfm"/>
+        <FormResources Include="MainUnit.dfm"/>
+        <FormResources Include="EventGuestAttendeesUnit.dfm"/>
+        <FormResources Include="EventGuestsUnit.dfm"/>
+        <FormResources Include="EventsUnit.dfm"/>
         <FormResources Include="EventTypesUnit.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

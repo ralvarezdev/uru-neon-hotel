@@ -4,22 +4,23 @@
 #pragma hdrstop
 
 #include "EventsUnit.h"
-#include "EventSpecialGuestsUnit.h"
+#include "EventGuestsUnit.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
-TSpecialGuestsForm *SpecialGuestsForm;
+TEventGuestsForm *EventGuestsForm;
 //---------------------------------------------------------------------------
-__fastcall TSpecialGuestsForm::TSpecialGuestsForm(TComponent* Owner)
+__fastcall TEventGuestsForm::TEventGuestsForm(TComponent* Owner)
 	: TForm(Owner)
 {
 }
 //---------------------------------------------------------------------------
-void __fastcall TSpecialGuestsForm::FormClose(TObject *Sender, TCloseAction &Action)
+void __fastcall TEventGuestsForm::FormClose(TObject *Sender, TCloseAction &Action)
 
 {
  EventsForm->Show();
 }
 //---------------------------------------------------------------------------
+
 
 

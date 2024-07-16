@@ -1,6 +1,7 @@
 object GuestTypesForm: TGuestTypesForm
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Neon Hotel - Guest Types'
   ClientHeight = 461
   ClientWidth = 684
@@ -1019,12 +1020,12 @@ object GuestTypesForm: TGuestTypesForm
         'ype_name FROM events AS e INNER JOIN Event_Guest_Types AS egt ON' +
         ' egt.event_id = e.event_id INNER JOIN Guest_Types AS gt ON gt.gu' +
         'est_type_id = egt.guest_type_id;')
-    Left = 608
+    Left = 616
     Top = 429
   end
   object EventGuestTypesDataSource: TDataSource
     DataSet = EventGuestTypesQuery
-    Left = 564
+    Left = 580
     Top = 429
   end
 end

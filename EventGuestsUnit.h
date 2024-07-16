@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef EventSpecialGuestsUnitH
-#define EventSpecialGuestsUnitH
+#ifndef EventGuestsUnitH
+#define EventGuestsUnitH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -33,23 +33,23 @@
 #include <Vcl.Buttons.hpp>
 #include <Vcl.DBCtrls.hpp>
 //---------------------------------------------------------------------------
-class TSpecialGuestsForm : public TForm
+class TEventGuestsForm : public TForm
 {
 __published:	// IDE-managed Components
 	TImage *MainBanner;
-	TLabel *SpecialGuestsLabel;
-	TDBGrid *EventSpecialGuestsDBGrid;
-	TFDConnection *EventSpecialGuestsConnection;
-	TFDQuery *EventSpecialGuestsQuery;
-	TDataSource *EventSpecialGuestsDataSource;
-	TDBNavigator *EventSpecialGuestsDBNavigator;
+	TLabel *GuestsLabel;
+	TDBGrid *EventGuestsDBGrid;
+	TFDConnection *EventGuestsConnection;
+	TFDQuery *EventGuestsQuery;
+	TDataSource *EventGuestsDataSource;
+	TDBNavigator *EventGuestsDBNavigator;
 	void __fastcall FormClose(TObject *Sender, TCloseAction &Action);
 
 private:	// User declarations
 public:		// User declarations
-	__fastcall TSpecialGuestsForm(TComponent* Owner);
+	__fastcall TEventGuestsForm(TComponent* Owner);
 };
 //---------------------------------------------------------------------------
-extern PACKAGE TSpecialGuestsForm *SpecialGuestsForm;
+extern PACKAGE TEventGuestsForm *EventGuestsForm;
 //---------------------------------------------------------------------------
 #endif

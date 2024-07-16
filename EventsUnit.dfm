@@ -1,6 +1,7 @@
 object EventsForm: TEventsForm
   Left = 0
   Top = 0
+  BorderIcons = [biSystemMenu, biMinimize]
   Caption = 'Neon Hotel -  Events'
   ClientHeight = 461
   ClientWidth = 684
@@ -13,9 +14,9 @@ object EventsForm: TEventsForm
   OnClose = FormClose
   TextHeight = 15
   object MainBanner: TImage
-    Left = -58
+    Left = -8
     Top = 40
-    Width = 800
+    Width = 700
     Height = 100
     Center = True
     Picture.Data = {
@@ -963,7 +964,7 @@ object EventsForm: TEventsForm
   end
   object EventsDBGrid: TDBGrid
     Left = 32
-    Top = 200
+    Top = 198
     Width = 620
     Height = 205
     DataSource = EventsDataSource
@@ -1020,18 +1021,18 @@ object EventsForm: TEventsForm
     TabOrder = 1
   end
   object SpecialGuestsButton: TButton
-    Left = 224
+    Left = 342
     Top = 175
-    Width = 100
+    Width = 155
     Height = 25
-    Caption = 'Special Guests'
+    Caption = 'Events Guests'
     TabOrder = 2
-    OnClick = SpecialGuestsButtonClick
+    OnClick = GuestsButtonClick
   end
   object GuestTypesButton: TButton
-    Left = 128
+    Left = 187
     Top = 175
-    Width = 100
+    Width = 155
     Height = 25
     Caption = 'Guest Types'
     TabOrder = 3
@@ -1040,11 +1041,20 @@ object EventsForm: TEventsForm
   object EventTypesButton: TButton
     Left = 32
     Top = 175
-    Width = 100
+    Width = 155
     Height = 25
     Caption = 'Event Types'
     TabOrder = 4
     OnClick = EventTypesButtonClick
+  end
+  object EventGuestAttendeesButton: TButton
+    Left = 497
+    Top = 175
+    Width = 155
+    Height = 25
+    Caption = 'Attendees'
+    TabOrder = 5
+    OnClick = EventGuestAttendeesButtonClick
   end
   object SpecialGuestsConnection: TFDConnection
     Params.Strings = (
@@ -1060,7 +1070,7 @@ object EventsForm: TEventsForm
   end
   object EventsDataSource: TDataSource
     DataSet = EventsQuery
-    Left = 564
+    Left = 580
     Top = 429
   end
   object EventsQuery: TFDQuery
@@ -1068,7 +1078,7 @@ object EventsForm: TEventsForm
     Connection = SpecialGuestsConnection
     SQL.Strings = (
       'SELECT * FROM events;')
-    Left = 608
+    Left = 616
     Top = 429
   end
 end
